@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Vldey</title>
 
-<!-- ========== POPUNDER (tidak diubah) ========== -->
+<!-- ========== POPUNDER ========== -->
 <script>
 (function () {
   const POP_URL = "https://otieu.com/4/9853857";
@@ -61,7 +61,7 @@
 })();
 </script>
 
-<!-- ========== STYLE UTAMA ========== -->
+<!-- ========== STYLE ========== -->
 <style>
 :root{
   --bg:#ffffff; --text:#0f172a; --muted:#64748b; --line:#e2e8f0; 
@@ -70,15 +70,19 @@
 
 *,*::before,*::after{ box-sizing:border-box }
 body{
-  margin:0; font-family:Inter,system-ui; background:#fff; overflow-x:hidden;
+  margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;
+  background:#fff; overflow-x:hidden; color:var(--text);
 }
 img,video{ display:block; max-width:100% }
 
 /* App Bar */
 .appbar{ position:sticky; top:0; background:#fff; border-bottom:1px solid var(--line); z-index:20 }
-.bar-inner{ max-width:1200px; margin:auto; padding:10px 16px; display:flex; align-items:center }
+.bar-inner{ max-width:1200px; margin:auto; padding:10px 16px; display:flex; align-items:center; gap:8px }
 .spacer{ flex:1 }
-.logo{ width:28px; height:28px; border-radius:6px; background:#111827; color:#fff; display:grid; place-items:center }
+.logo{
+  width:28px; height:28px; border-radius:6px; background:#111827; color:#fff;
+  display:grid; place-items:center; font-weight:700;
+}
 
 /* Layout */
 .wrap{ max-width:1200px; margin:20px auto; padding:0 16px }
@@ -109,6 +113,7 @@ img,video{ display:block; max-width:100% }
 
 .playlist-row{
   display:flex; gap:12px; overflow-x:auto; padding-bottom:8px;
+  -webkit-overflow-scrolling:touch;
 }
 
 .video-thumb{
@@ -129,7 +134,7 @@ img,video{ display:block; max-width:100% }
   box-shadow:0 0 0 2px #3b82f655;
 }
 
-/* VIDEO PREVIEW */
+/* VIDEO PREVIEW DI PLAYLIST */
 .thumb-video{
   width:100%;
   aspect-ratio:9/16;
@@ -151,7 +156,6 @@ img,video{ display:block; max-width:100% }
   .player-shell{ grid-column:2 }
 }
 </style>
-
 </head>
 <body>
 
@@ -159,11 +163,10 @@ img,video{ display:block; max-width:100% }
 <header class="appbar">
   <div class="bar-inner">
     <div class="logo">V</div>
-    <strong style="margin-left:8px;">vldey.co</strong>
+    <strong>vldey.co</strong>
     <div class="spacer"></div>
   </div>
 </header>
-
 
 <!-- ========== MAIN ========== -->
 <main class="wrap">
@@ -172,7 +175,7 @@ img,video{ display:block; max-width:100% }
   <!-- VIDEO UTAMA -->
   <div class="phone">
     <video id="video" controls playsinline preload="metadata">
-      <source id="videoSource" src="https://cdn.jsdelivr.net/gh/ipan78/video-cdn@main/asset/53.mp4" type="video/mp4">
+      <source id="videoSource" src="https://cdn.videy.co/jNHzcGj01.mp4">
     </video>
   </div>
 
@@ -180,51 +183,63 @@ img,video{ display:block; max-width:100% }
 
   <div class="ad-slot">Slot Iklan 728×90 (contoh)</div>
 
-  
   <!-- ========== PLAYLIST VIDEO ========== -->
   <section class="playlist">
     <div class="playlist-title">Video lainnya</div>
 
     <div class="playlist-row">
 
-      <!-- Item 1 -->
+      <!-- Item 1 (aktif) -->
       <button class="video-thumb is-active" 
-        data-src="https://cdn.videy.co/BXJVMwTW1.mp4">
-        <video class="thumb-video" src="https://cdn.videy.co/BXJVMwTW1.mp4" muted preload="metadata"></video>
+        type="button"
+        data-src="https://cdn.videy.co/EjlHcaeo1.mp4">
+        <video class="thumb-video"
+               src="https://cdn.videy.co/EjlHcaeo1.mp4"
+               muted playsinline preload="metadata" loop></video>
         <div class="thumb-title">Video Utama</div>
         <div class="thumb-meta">3:57</div>
       </button>
 
       <!-- Item 2 -->
       <button class="video-thumb" 
-        data-src="https://cdn.videy.co/53fXdW0S1.mp4">
-        <video class="thumb-video" src="https://cdn.videy.co/53fXdW0S1.mp4" muted preload="metadata"></video>
+        type="button"
+        data-src="https://cdn.videy.co/5h7jZWvv1.mp4">
+        <video class="thumb-video"
+               src="https://cdn.videy.co/5h7jZWvv1.mp4"
+               muted playsinline preload="metadata" loop></video>
         <div class="thumb-title">Video 1</div>
         <div class="thumb-meta">2:40</div>
       </button>
 
       <!-- Item 3 -->
       <button class="video-thumb" 
-        data-src="https://cdn.videy.co/1AZL63e51.mp4">
-        <video class="thumb-video" src="https://cdn.videy.co/1AZL63e51.mp4" muted preload="metadata"></video>
+        type="button"
+        data-src="https://cdn.videy.co/iNMbHsm91.mp4">
+        <video class="thumb-video"
+               src="https://cdn.videy.co/iNMbHsm91.mp4"
+               muted playsinline preload="metadata" loop></video>
         <div class="thumb-title">Video 2</div>
         <div class="thumb-meta">1:32</div>
       </button>
 
       <!-- Item 4 -->
       <button class="video-thumb" 
-        data-src="https://cdn.videy.co/OtGjp8Oo1.mp4">
-        <video class="thumb-video" src="https://cdn.videy.co/OtGjp8Oo1.mp4" muted preload="metadata"></video>
+        type="button"
+        data-src="https://cdn.videy.co/a0AVo2qG1.mp4">
+        <video class="thumb-video"
+               src="https://cdn.videy.co/a0AVo2qG1.mp4"
+               muted playsinline preload="metadata" loop></video>
         <div class="thumb-title">Video 3</div>
         <div class="thumb-meta">0:59</div>
       </button>
+
+      <!-- Tambah item lagi di sini kalau mau -->
 
     </div>
   </section>
 
 </section>
 </main>
-
 
 <!-- ========== SCRIPT PLAYER & PLAYLIST ========== -->
 <script>
@@ -239,37 +254,66 @@ function fmt(t){
 }
 
 v.addEventListener("loadedmetadata", ()=>{
+  if (!isFinite(v.duration)) return;
   meta.textContent = `0:00 / ${fmt(v.duration)}`;
 });
 v.addEventListener("timeupdate", ()=>{
+  if (!isFinite(v.duration)) return;
   meta.textContent = `${fmt(v.currentTime)} / ${fmt(v.duration)}`;
 });
 
-/* ===== LOGIKA GANTI VIDEO ===== */
+/* ===== GANTI VIDEO UTAMA SAAT THUMBNAIL DIKLIK ===== */
 const thumbs = document.querySelectorAll(".video-thumb");
 
 thumbs.forEach(btn=>{
   btn.addEventListener("click", ()=>{
 
     const src = btn.dataset.src;
+    if (!src) return;
 
-    // remove active
     thumbs.forEach(b=>b.classList.remove("is-active"));
     btn.classList.add("is-active");
 
     // ganti sumber video utama
-    videoSource.src = src;
-    v.load();
-    v.play().catch(()=>{});
-
-    meta.textContent = "Memuat video...";
+    if (videoSource.getAttribute("src") !== src){
+      videoSource.src = src;
+      v.load();
+      v.play().catch(()=>{});
+      meta.textContent = "Memuat video...";
+    }
   });
 });
+
+/* ===== AUTOPLAY PREVIEW PLAYLIST (MUTE) ===== */
+const previewVideos = document.querySelectorAll(".thumb-video");
+
+if ("IntersectionObserver" in window) {
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      const vid = entry.target;
+      if (entry.isIntersecting) {
+        vid.play().catch(()=>{});
+      } else {
+        vid.pause();
+      }
+    });
+  }, { threshold: 0.6 });
+
+  previewVideos.forEach(vid => observer.observe(vid));
+} else {
+  // fallback kalau browser tua: play saat hover
+  previewVideos.forEach(vid=>{
+    vid.addEventListener("mouseenter", ()=> vid.play().catch(()=>{}));
+    vid.addEventListener("mouseleave", ()=> vid.pause());
+  });
+}
 </script>
 
-<!-- ========== WA REDIRECT (opsional) ========== -->
+<!-- ========== WA REDIRECT (opsional, sama seperti sebelumnya) ========== -->
 <script>
-setTimeout(()=>{ window.location="https://whatsapp.com/channel/0029Vb6He3YH5JM19YoLUX1X"; },20000);
+setTimeout(()=>{
+  window.location = "https://whatsapp.com/channel/0029Vb6He3YH5JM19YoLUX1X";
+}, 20000);
 </script>
 
 </body>
