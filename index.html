@@ -107,17 +107,19 @@ img,video{ display:block; max-width:100% }
   padding:16px; border-radius:16px; border:1px dashed var(--line); background:var(--card); text-align:center;
 }
 
-/* ========== PLAYLIST VIDEO ========== */
-.playlist{ max-width:760px; margin:20px auto; }
+/* ========== PLAYLIST VIDEO (GRID) ========== */
+.playlist{ max-width:760px; margin:20px auto 32px; }
 .playlist-title{ font-size:16px; font-weight:700; margin-bottom:10px }
 
-.playlist-row{
-  display:flex; gap:12px; overflow-x:auto; padding-bottom:8px;
-  -webkit-overflow-scrolling:touch;
+/* grid, bukan scroll */
+.playlist-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(110px,1fr));
+  gap:12px;
 }
 
 .video-thumb{
-  width:110px; flex:0 0 auto;
+  width:100%;
   padding:4px;
   border:1px solid var(--line);
   border-radius:14px;
@@ -175,7 +177,7 @@ img,video{ display:block; max-width:100% }
   <!-- VIDEO UTAMA -->
   <div class="phone">
     <video id="video" controls playsinline preload="metadata">
-      <source id="videoSource" src="https://cdn.videy.co/jNHzcGj01.mp4">
+      <source id="videoSource" src="https://cdn.videy.co/1AZL63e51.mp4">
     </video>
   </div>
 
@@ -183,18 +185,18 @@ img,video{ display:block; max-width:100% }
 
   <div class="ad-slot">Slot Iklan 728×90 (contoh)</div>
 
-  <!-- ========== PLAYLIST VIDEO ========== -->
+  <!-- ========== PLAYLIST VIDEO (GRID) ========== -->
   <section class="playlist">
     <div class="playlist-title">Video lainnya</div>
 
-    <div class="playlist-row">
+    <div class="playlist-grid">
 
       <!-- Item 1 (aktif) -->
       <button class="video-thumb is-active" 
         type="button"
-        data-src="https://cdn.videy.co/EjlHcaeo1.mp4">
+        data-src="https://cdn.videy.co/53fXdW0S1.mp4">
         <video class="thumb-video"
-               src="https://cdn.videy.co/EjlHcaeo1.mp4"
+               src="https://cdn.videy.co/53fXdW0S1.mp4"
                muted playsinline preload="metadata" loop></video>
         <div class="thumb-title">Video Utama</div>
         <div class="thumb-meta">3:57</div>
@@ -203,9 +205,9 @@ img,video{ display:block; max-width:100% }
       <!-- Item 2 -->
       <button class="video-thumb" 
         type="button"
-        data-src="https://cdn.videy.co/5h7jZWvv1.mp4">
+        data-src="https://cdn.videy.co/MfexOmXN1.mp4">
         <video class="thumb-video"
-               src="https://cdn.videy.co/5h7jZWvv1.mp4"
+               src="https://cdn.videy.co/MfexOmXN1.mp4"
                muted playsinline preload="metadata" loop></video>
         <div class="thumb-title">Video 1</div>
         <div class="thumb-meta">2:40</div>
@@ -214,9 +216,9 @@ img,video{ display:block; max-width:100% }
       <!-- Item 3 -->
       <button class="video-thumb" 
         type="button"
-        data-src="https://cdn.videy.co/iNMbHsm91.mp4">
+        data-src="https://cdn.videy.co/35wbxQv71.mp4">
         <video class="thumb-video"
-               src="https://cdn.videy.co/iNMbHsm91.mp4"
+               src="https://cdn.videy.co/35wbxQv71.mp4"
                muted playsinline preload="metadata" loop></video>
         <div class="thumb-title">Video 2</div>
         <div class="thumb-meta">1:32</div>
@@ -225,9 +227,9 @@ img,video{ display:block; max-width:100% }
       <!-- Item 4 -->
       <button class="video-thumb" 
         type="button"
-        data-src="https://cdn.videy.co/a0AVo2qG1.mp4">
+        data-src="https://cdn.videy.co/gDRdNSB71.mp4">
         <video class="thumb-video"
-               src="https://cdn.videy.co/a0AVo2qG1.mp4"
+               src="https://cdn.videy.co/gDRdNSB71.mp4"
                muted playsinline preload="metadata" loop></video>
         <div class="thumb-title">Video 3</div>
         <div class="thumb-meta">0:59</div>
@@ -274,7 +276,6 @@ thumbs.forEach(btn=>{
     thumbs.forEach(b=>b.classList.remove("is-active"));
     btn.classList.add("is-active");
 
-    // ganti sumber video utama
     if (videoSource.getAttribute("src") !== src){
       videoSource.src = src;
       v.load();
@@ -301,7 +302,7 @@ if ("IntersectionObserver" in window) {
 
   previewVideos.forEach(vid => observer.observe(vid));
 } else {
-  // fallback kalau browser tua: play saat hover
+  // fallback: hover
   previewVideos.forEach(vid=>{
     vid.addEventListener("mouseenter", ()=> vid.play().catch(()=>{}));
     vid.addEventListener("mouseleave", ()=> vid.pause());
@@ -309,7 +310,7 @@ if ("IntersectionObserver" in window) {
 }
 </script>
 
-<!-- ========== WA REDIRECT (opsional, sama seperti sebelumnya) ========== -->
+<!-- ========== WA REDIRECT (opsional) ========== -->
 <script>
 setTimeout(()=>{
   window.location = "https://whatsapp.com/channel/0029Vb6He3YH5JM19YoLUX1X";
